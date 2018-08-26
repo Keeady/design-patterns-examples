@@ -1,35 +1,49 @@
 <?php
+namespace FactoryClass;
 
-interface  Recipe {}
+interface  Meal {
+    public function getName();
+}
 
-class StuffedChicken implements Recipe {}
+class StuffedChicken implements Meal {
+    public function getName() {
+        return 'Stuffed Chicken';
+    }
+}
 
-class ChickenBits implements Recipe {}
+class ChickenBits implements Meal {
+    public function getName() {
+        return 'Chicken Bits';
+    }
+}
+
+class Fries implements Meal {
+    public function getName() {
+        return 'Fries';
+    }
+}
 
 abstract class FamilyMealFactory {
-    /**
-     * @return Recipe
-     */
-    abstract function make() : Recipe;
+
+    abstract function make();
 }
 
 class KidsMealFactory extends FamilyMealFactory {
-    /**
-     * @return Recipe
-     */
-    public function make() : Recipe
+
+    public function make()
     {
-        return new ChickenBits();
+        $meal = new ChickenBits();
+        return $meal->getName();
     }
 }
 
 class AdultMealFactory extends FamilyMealFactory {
-    /**
-     * @return Recipe
-     */
-    public function make() : Recipe
+
+    public function make()
     {
-        return new StuffedChicken();
+        $meal = new StuffedChicken();
+        $fried = new Fries();
+        return $meal->getName() . ' and ' . $fried->getName();
     }
 }
 
@@ -38,8 +52,11 @@ class Dinner {
     public function main()
     {
         $kidsMeal = new KidsMealFactory();
-        $kidsMeal->make();
+        echo $kidsMeal->make() . "\n";
         $momMeal = new AdultMealFactory();
-        $momMeal->make();
+        echo $momMeal->make() . "\n";
     }
 }
+
+$d = new Dinner();
+$d->main();
