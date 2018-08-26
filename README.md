@@ -10,3 +10,16 @@ In this example, we are going to illustrate a discount approval process. A sales
 one time discount during checkout. However, if the discount is above a given threshold, the discount first needs to be approved
 before the order can be processed. In this case, the chain of approval has an automatic approval for small discounts, a manager
  approval for manager discount, a senior manager approval, and finally an executive level approval.
+
+## Factory
+Factory design pattern is a creational pattern which offload the instantiation of objects to other classes.
+One of the motivation for using Factory pattern is to reduce coupling between the client and its dependencies.
+Another use case is when creating an object is complex and the process can be reused in other parts of the system.
+In the example code, the client can switch between different concrete factory implementation with just a few changes.
+
+#### Factory Method vs Factory Class
+A factory class pattern provides different concrete subclasses for the client to choose from. It's easy to add new factory subclass
+ in the future for different type of meal for instance.
+ 
+ A factory method is simple and easy to implement. However, it can easily grow out of proportion and could violate the open 
+ close principle. To add a new type of meal, for instance, the factory method needs to be modified.
